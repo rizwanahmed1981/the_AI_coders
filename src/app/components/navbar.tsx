@@ -2,6 +2,16 @@ import Link from 'next/link'
 import React from 'react'
 import SocialMedia from './SocialMedia'
 import ThemeToggle from './ThemeToggle'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { MenuIcon } from 'lucide-react'
+
 
 const Navbar = () => {
   return (
@@ -12,14 +22,35 @@ const Navbar = () => {
       <div className='hidden md:flex items-center justify-between gap-8'>
         <Link href={'/'}>Home</Link>
         <Link href={'/blog'}>Blog</Link>
-        <Link href={'/'}>Contact</Link>
+        <Link href={'/contect'}>Contact</Link>
       </div>
-        <div className='flex'>
-      <div className='xs:flex items-center justify-center hidden '>
-        <SocialMedia />
-      </div>
-      <ThemeToggle/>
+      <div className='flex'>
+        <div className='xs:flex items-center justify-center hidden '>
+          <SocialMedia />
         </div>
+        <ThemeToggle />
+      </div>
+
+      <div className='md:hidden flex flex-col items-center justify-between gap-8'>
+        <Sheet>
+          <SheetTrigger>
+            <MenuIcon/>
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>The A.I. Coders</SheetTitle>
+              <SheetDescription className='flex flex-col items-center gap-6'>
+
+                <Link href={'/'}>Home</Link>
+                <Link href={'/blog'}>Blog</Link>
+                <Link href={'/contect'}>Contact</Link>
+                <SocialMedia />
+              </SheetDescription>
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
+      </div>
+
     </header>
   )
 }

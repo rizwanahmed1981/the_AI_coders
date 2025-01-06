@@ -27,7 +27,7 @@ export default function SocialMedia() {
         <Facebook className={`w-4 h-4`} />
       </Link> */}
       <Link href={"https://github.com/rizwanahmed1981"} target="_blank">
-        <Github className={`w-6 h-6 fill-dark dark:fill-light`} />
+        <Github className={`w-6 h-6 fill-light `} />
       </Link>
     </nav>
   );
