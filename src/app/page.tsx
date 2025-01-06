@@ -1,75 +1,53 @@
+import { Container } from 'postcss'
+import React from 'react'
+import Image from 'next/image'
 
 
-
-import Image from "next/image";
-import { client } from '@/sanity/lib/client'
-// import BlogCard from "@/app/components/blogCard"
-import { type SanityDocument } from "next-sanity";
-import Link from "next/link";
-import { urlForImage } from "@/sanity/lib/image";
-
-
-const query = `*[_type == "post"]{
-  title,summary,content,"image":image.asset->url,"slug":slug.current
-}`;
-
-
-const options = { next: { revalidate: 30 } };
-
-export default async function IndexPage() {
-  const posts = await client.fetch(query);
-
+const Home = () => {
   return (
-    <main className="container mx-auto min-h-screen flex flex-col items-center p-8">
-      <h1 className="text-4xl font-bold mb-8">Most Recent Posts</h1>
-      <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-8">
-        {posts.map((post: Post) => (
-          <ul key={post.id} className=" flex flex-col gap-4">
-            <li> <img src={urlForImage(post.image).width(400).url()} /></li>
 
-            <li><Link href={post.slug} className="text-lg font-bold cursor-pointer">{post.title}</Link></li>
-            <li>{post.summary}</li>
-            {/* <li>{post.author}</li> */}
+    <div className='flex flex-col md:flex-row gap-8 items-center justify-between p-4'>
+      <div className='md:w-[50%] flex flex-col justify-between p-4 gap-6'>
+        <div>
+          <h1 className='text-3xl md:text-6xl text-yellow-500 font-bold'>Welcome to: <br /> The A.I. Coders!</h1>
+          <p className='text-2xl text-pretty text-justify indent-20'>At The A.I. Coders, we are passionate about unlocking the transformative power of artificial intelligence and coding. Our mission is to bridge the gap between complex AI concepts and practical applications, enabling innovators, developers, and enthusiasts to create smarter solutions.</p>
+        </div>
+        <div className='hidden md:flex flex-col'>
+          <h2 className='text-4xl font-bold opacity-60'>Who We Are</h2>
+          <p className='text-xl text-justify indent-20'>We are a community of AI enthusiasts, programmers, and thought leaders dedicated to exploring the limitless potential of artificial intelligence. Whether you’re a seasoned developer or a curious beginner, our platform is your go-to resource for insights, tutorials, and tools to harness the power of AI.</p>
+        </div>
 
+        <div className='hidden md:flex flex-col'>
+          <h2 className='text-4xl font-bold opacity-60' >What We Do</h2>
+          <ul>
+            <li className='flex flex-col gap-2 items-start'>
+              <h4 className=' text-xl font-bold underline opacity-50'>Educational Content:</h4>
+              <p className='indent-20 text-center'>Dive into detailed tutorials, guides, and resources tailored for AI enthusiasts and developers</p>
+            </li>
+            <li className='flex flex-col gap-2 items-start'>
+              <h4 className=' text-xl font-bold underline opacity-50'>AI News and Trends:</h4>
+              <p className='indent-20 text-center'>Stay updated with the latest advancements in artificial intelligence and machine learning.</p>
+            </li>
+            <li className='flex gap-2 items-start flex-col'>
+              <h4 className=' text-xl font-bold underline opacity-50'>Community Engagement:</h4>
+              <p className='indent-20 text-center'>Connect with like-minded individuals, share ideas, and collaborate on AI-powered projects.</p>
+            </li>
+            <li className='flex gap-2 items-start flex-col'>
+              <h4 className=' text-xl font-bold underline opacity-50'>Innovative Solutions:</h4>
+              <p className='indent-20 text-center'>Explore real-world applications of AI to solve challenges across industries.
+                Join us in shaping the future of technology, one line of code at a time!</p>
+            </li>
 
           </ul>
-        ))}
+        </div>
+
+      </div>
+      <div>
+        <Image src="/home.jpeg" alt='' width={600} height={600} className='rounded-full' />
       </div>
 
-    </main>
-  );
+    </div>
+  )
 }
 
-
-
-
-
-
-// export const revalidate = 60; // seconds
-
-// export default async function Home() {
-
-// const query = `*[_type=='post'] | order(_createdAt asc){
-
-// summary,image,title,
-//   "slug":slug.current
-// }`;
-
-//   const posts: Post[] = await client.fetch(query)
-
-//   return (
-//     <main className="flex min-h-screen flex-col ">
-//       <h1 className="text-2xl font-bold uppercase my-12 text-center text-dark dark:text-light sm:text-3xl lg:text-5xl ">
-//         Most Recent blogs
-//       </h1>
-//       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-//         {
-//           posts.map((post: Post) => (
-//             <BlogCard post={post} key={post.slug} />
-//           ))
-//         }
-
-//       </section>
-//     </main>
-//   );
-// }
+export default Home
