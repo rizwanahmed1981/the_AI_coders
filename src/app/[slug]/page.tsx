@@ -1,8 +1,9 @@
-import { PortableText, type SanityDocument } from "next-sanity";
+import { type SanityDocument } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
+import {PortableText} from '@portabletext/react'
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
   title,summary,content,"image":image.asset->url,"slug":slug.current,
@@ -32,7 +33,7 @@ const urlFor = (source: SanityImageSource) =>
     
       return (
         <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
-          <Link href="/" className="hover:underline">
+          <Link href="/blog" className="hover:underline">
             ← Back to posts
           </Link>
           {postImageUrl && (

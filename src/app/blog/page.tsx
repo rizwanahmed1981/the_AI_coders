@@ -23,7 +23,7 @@ export default async function blog() {
     <main className="container mx-auto min-h-screen flex flex-col items-center p-8">
       <h1 className="text-4xl font-bold mb-8">Most Recent Posts</h1>
       <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-8">
-        {posts.map((post: Post) => (
+        {posts.map((post: any) => (
           <ul key={post.id} className=" flex flex-col gap-4">
             <li> <img src={urlForImage(post.image).width(400).url()} /></li>
 
